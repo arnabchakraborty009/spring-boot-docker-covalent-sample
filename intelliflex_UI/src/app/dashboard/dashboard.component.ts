@@ -1,19 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
-
 import { Title }     from '@angular/platform-browser';
-
 import { TdLoadingService } from '@covalent/core';
-
 import { UsersService} from '../../services';
 import { Response, Http, Headers } from '@angular/http';
-
 import { CovalentDataTableModule } from '@covalent/core';
 import { IPageChangeEvent } from '@covalent/core';
 import { ITdDataTableColumn } from '@covalent/core';
 import { TdDialogService } from '@covalent/core';
 import { MdDialog } from '@angular/material';
 import { Prod } from './dashboard.model';
-
 
 
 @Component({
@@ -30,20 +25,16 @@ export class DashboardComponent {
   user: string;
   feature: IFeature;
   action: string;
-constructor(private _dialogService: TdDialogService,
-private  _UsersService: UsersService) {
+  constructor(private _dialogService: TdDialogService,
+    private  _UsersService: UsersService) {  
 
-}
-
+  }
   private basicData: any[] = this.onLoadGet();
   private columns: ITdDataTableColumn[] = [
     { name: 'id', label: 'ID', tooltip: 'Stock Keeping Unit' },
     { name: 'serviceName', label: 'Service Name' },
     { name: 'serviceStatus', label: 'Service Status'},
   ];
-
-
-
   openConfirm(row: any, name: string): void {
     this._dialogService.openConfirm({
       message: 'Are you sure you want to delete the record ?',
@@ -82,20 +73,17 @@ private  _UsersService: UsersService) {
       }
     });
   }
-
- 
  onLoadGet(): any {
  this._UsersService.doGet('/getAll').subscribe((customers: any) => {
        console.log("DATA = ="+ customers);
       this.basicData = customers;
  });
-}
+ }
+ /* HTTP Calls */
 delete(actionUrl: String): any {
  this._UsersService.doDelete(actionUrl).subscribe((customers: any) => {
-
  });
 }
-
  post(actionUrl:String, prod:Prod){
    this._UsersService.doPost(actionUrl,prod).subscribe((customers: any) => {
 
@@ -114,11 +102,9 @@ save(): void {
       created: now,
       modified: now,
     };
-    
       console.log('Saving ...');
       var prod = { "id": '', "serviceName" : this.title, "serviceStatus": this.user};
       this.post("/update", prod);
-    
   }
 
 }

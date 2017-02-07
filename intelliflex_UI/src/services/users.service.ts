@@ -62,7 +62,6 @@ export class UsersService  {
         }
       }
     }
-
     public doGet(url: String){
     console.log('In doGet - '+this.baseUrl + url);
         return this._http.get(this.baseUrl + url)
@@ -73,18 +72,14 @@ export class UsersService  {
     console.log('In doDelete - '+this.baseUrl + url);
         return this._http.delete(this.baseUrl + url,this.options);
     }
-
     public doPost(url: String, prod: Prod){
         this.setAuthenticationToken();
         let bodyString = JSON.stringify(prod);
         console.log('Body String = '+bodyString);
         console.log('URL = '+this.baseUrl + url);
         return this._http.post(this.baseUrl + url, bodyString, this.options)
-            /*.map(this.extractData)*/
             .catch(this.handleError);
     }
-
-    
     public getExtractDataFunction() {
 
         return function(res: Response) {
@@ -96,8 +91,6 @@ export class UsersService  {
             }
         }
     }
-    
-
     extractText (res: Response) {
         let body = res.text();
         return body || res.toString();
