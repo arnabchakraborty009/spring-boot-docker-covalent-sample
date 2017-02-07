@@ -1,7 +1,0 @@
-com/rean/repo/ProdRepo.class
-com/rean/controller/DbApp.class
-com/rean/controller/ProdController.class
-com/rean/serviceimpl/ProdServiceImpl.class
-com/rean/service/ProdService.class
-com/rean/helper/ProdControllerHelper.class
-com/rean/entity/Prod.class
